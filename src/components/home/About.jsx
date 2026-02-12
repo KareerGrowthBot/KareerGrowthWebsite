@@ -5,18 +5,50 @@ import KGLogo from '../../assets/images/KG-logo.png';
 
 const About = () => {
     return (
-        <section id="about" className="py-20 lg:py-32 bg-white relative overflow-hidden">
-            <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <section id="about" className="py-4 lg:py-32 bg-white dark:bg-black relative overflow-hidden transition-colors">
+            <div className="max-w-7xl mx-auto px-6 flex flex-col lg:grid lg:grid-cols-2 gap-4 lg:gap-16 items-center">
 
-                {/* Content Side - Clean Reference-Style Bot */}
+                {/* Content Side - Positioned on right for desktop */}
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.9, x: -30 }} // Shifted left
-                    whileInView={{ opacity: 1, scale: 1, x: -30 }}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
-                    className="relative flex justify-center items-center -ml-8" // Additional left margin adjustment
+                    className="order-1 lg:order-2"
                 >
-                    <div className="relative w-full max-w-2xl aspect-square">
+                    <span className="text-sm font-bold text-indigo-600 dark:text-indigo-400 tracking-wider uppercase mb-2 block">Who We Are</span>
+                    <h2 className="text-2xl lg:text-5xl font-bold text-black dark:text-white mb-6 leading-tight">
+                        Bridging the Gap Between <span className="text-indigo-600 dark:text-indigo-400">Ambition</span> & <span className="text-indigo-600 dark:text-indigo-400">Achievement</span>.
+                    </h2>
+                    <p className="text-zinc-600 dark:text-zinc-400 text-base lg:text-lg leading-relaxed mb-6 lg:mb-8">
+                        Our AI-driven platform and expert mentorship provide the tools you need to master interviews, refine your skills, and secure your dream role. We combine personalized learning paths with cutting-edge technology to ensure your success.
+                    </p>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
+                        {/* Content Side - Positioned on right for desktop */}
+                        {[
+                            { text: "AI Resume Scoring", icon: <TrendingUp className="w-5 h-5 text-indigo-600" /> },
+                            { text: "Proctored Mock Tests", icon: <ShieldCheck className="w-5 h-5 text-indigo-600" /> },
+                            { text: "Real-time Coding", icon: <CheckCircle2 className="w-5 h-5 text-indigo-600" /> },
+                            { text: "Expert Mentorship", icon: <Users className="w-5 h-5 text-indigo-600" /> }
+                        ].map((item, index) => (
+                            <div key={index} className="flex items-center gap-3 p-3 bg-zinc-50 dark:bg-black rounded-xl border border-zinc-100 dark:border-zinc-800 hover:border-indigo-200 dark:hover:border-indigo-600 transition-colors">
+                                {item.icon}
+                                <span className="text-zinc-800 dark:text-zinc-200 font-medium text-sm">{item.text}</span>
+                            </div>
+                        ))}
+                    </div>
+                </motion.div>
+
+                {/* Bot Side - Clean Reference-Style Bot */}
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8 }}
+                    className="relative flex justify-center items-center lg:-ml-8 order-2 lg:order-1 mb-8 lg:mb-0"
+                >
+                    <div className="relative w-full max-w-[280px] sm:max-w-2xl aspect-square">
                         {/* Subtle Backdrop */}
                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-slate-100/50 rounded-full blur-3xl -z-10" />
 
@@ -34,8 +66,6 @@ const About = () => {
                                     </feMerge>
                                 </filter>
                             </defs>
-
-
 
                             {/* Shadow */}
                             <motion.ellipse
@@ -76,9 +106,9 @@ const About = () => {
                                 >
                                     {/* Antenna */}
                                     <line x1="250" y1="140" x2="250" y2="110" stroke="#94a3b8" strokeWidth="3" />
-                                    <circle cx="250" cy="110" r="6" fill="#eab308" />
+                                    <circle cx="250" cy="110" r="6" fill="#4f46e5" />
                                     <motion.circle
-                                        cx="250" cy="110" r="12" fill="none" stroke="#eab308" strokeWidth="1.5"
+                                        cx="250" cy="110" r="12" fill="none" stroke="#4f46e5" strokeWidth="1.5"
                                         animate={{ scale: [1, 1.4], opacity: [0.6, 0] }}
                                         transition={{ duration: 1.5, repeat: Infinity }}
                                     />
@@ -91,8 +121,8 @@ const About = () => {
 
                                     {/* Eyes (Static Yellow Squares) */}
                                     <g>
-                                        <rect x="205" y="190" width="22" height="20" rx="4" fill="#fbbf24" filter="url(#glow)" />
-                                        <rect x="273" y="190" width="22" height="20" rx="4" fill="#fbbf24" filter="url(#glow)" />
+                                        <rect x="205" y="190" width="22" height="20" rx="4" fill="#818cf8" filter="url(#glow)" />
+                                        <rect x="273" y="190" width="22" height="20" rx="4" fill="#818cf8" filter="url(#glow)" />
                                     </g>
                                 </motion.g>
                             </motion.g>
@@ -116,39 +146,6 @@ const About = () => {
                         </svg>
                     </div>
                 </motion.div>
-
-                {/* Content Side */}
-                <motion.div
-                    initial={{ opacity: 0, x: 50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
-                >
-                    <span className="text-sm font-bold text-yellow-600 tracking-wider uppercase mb-2 block">Who We Are</span>
-                    <h2 className="text-3xl lg:text-5xl font-bold text-slate-900 mb-6 leading-tight">
-                        Bridging the Gap Between <span className="text-yellow-600">Ambition</span> and <span className="text-yellow-600">Achievement</span>.
-                    </h2>
-                    <p className="text-slate-600 text-lg leading-relaxed mb-8">
-                        Our AI-driven platform and expert mentorship provide the tools you need to master interviews, refine your skills, and secure your dream role. We combine personalized learning paths with cutting-edge technology to ensure your success.
-                    </p>
-
-                    <div className="grid sm:grid-cols-2 gap-6 mb-10">
-                        {[
-                            { text: "AI Resume Scoring", icon: <TrendingUp className="w-5 h-5 text-yellow-600" /> },
-                            { text: "Proctored Mock Tests", icon: <ShieldCheck className="w-5 h-5 text-yellow-600" /> },
-                            { text: "Real-time Coding", icon: <CheckCircle2 className="w-5 h-5 text-yellow-600" /> },
-                            { text: "Expert Mentorship", icon: <Users className="w-5 h-5 text-yellow-600" /> }
-                        ].map((item, index) => (
-                            <div key={index} className="flex items-center gap-3 p-3 bg-slate-50 rounded-xl border border-slate-100 hover:border-yellow-200 transition-colors">
-                                {item.icon}
-                                <span className="text-slate-800 font-medium text-sm">{item.text}</span>
-                            </div>
-                        ))}
-                    </div>
-
-
-                </motion.div>
-
             </div>
         </section>
     );

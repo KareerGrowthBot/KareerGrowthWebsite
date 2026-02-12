@@ -20,49 +20,139 @@ const testimonials = [
         role: "Product Manager @ Innovate",
         text: "Incredible support team and resources. I landed my dream job in just 3 weeks.",
         rating: 5
+    },
+    {
+        name: "David Miller",
+        role: "Frontend Developer @ Pixels",
+        text: "The real-time coding practice helped me get over my fear of live interviews.",
+        rating: 5
+    },
+    {
+        name: "Emily Rodriguez",
+        role: "UX Designer @ CreativePulse",
+        text: "A must-have for anyone serious about career growth in the modern market.",
+        rating: 5
+    },
+    {
+        name: "Alex Thompson",
+        role: "Backend Engineer @ CloudScale",
+        text: "The AI-driven insights pointed out weaknesses I didn't even know I had.",
+        rating: 5
+    },
+    {
+        name: "Sophia Lee",
+        role: "DevOps Engineer @ SecureOps",
+        text: "From zero to offer in a month. The structure provided by KareerGrowth is top-notch.",
+        rating: 5
+    },
+    {
+        name: "Ryan Patel",
+        role: "Product Designer @ UserFirst",
+        text: "The portfolio guidance was exactly what I needed to stand out to recruiters.",
+        rating: 5
+    },
+    {
+        name: "Olivia Brown",
+        role: "HR Manager @ TalentAcquire",
+        text: "I recommend KareerGrowth to all my candidates who need a bit of extra polish.",
+        rating: 5
     }
 ];
 
 const Testimonials = () => {
+    const [isPaused, setIsPaused] = React.useState(false);
+    // Duplicate for seamless looping
+    const doubledTestimonials = [...testimonials, ...testimonials];
+
     return (
-        <section className="py-20 lg:py-32 bg-slate-50 relative overflow-hidden">
-            <div className="max-w-7xl mx-auto px-6">
-                <div className="text-center mb-16">
-                    <span className="text-sm font-semibold text-yellow-600 tracking-wider uppercase block mb-2">Success Stories</span>
-                    <h2 className="text-3xl lg:text-4xl font-bold text-slate-900">What Our Users Say</h2>
+        <section className="py-24 lg:py-32 bg-white dark:bg-black relative overflow-hidden transition-colors">
+            <div className="max-w-7xl mx-auto px-6 mb-16">
+                <div className="text-center">
+                    <span className="text-sm font-semibold text-indigo-600 dark:text-indigo-400 tracking-wider uppercase block mb-3">Success Stories</span>
+                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black dark:text-white leading-tight">What Our Users Say</h2>
+                </div>
+            </div>
+
+            <div
+                className="flex flex-col gap-10 cursor-pointer"
+                onMouseEnter={() => setIsPaused(true)}
+                onMouseLeave={() => setIsPaused(false)}
+            >
+                {/* Row 1: Leftward Marquee */}
+                <div className="relative flex overflow-hidden">
+                    <div
+                        className="flex gap-6 px-4 animate-marquee-left"
+                        style={{
+                            animationDuration: '40s',
+                            animationPlayState: isPaused ? 'paused' : 'running'
+                        }}
+                    >
+                        {doubledTestimonials.map((t, index) => (
+                            <div
+                                key={`r1-${index}`}
+                                className="w-[300px] sm:w-[380px] flex-shrink-0 bg-white dark:bg-black p-5 sm:p-6 rounded-xl border border-zinc-100 dark:border-zinc-800 hover:border-indigo-600 dark:hover:border-indigo-600 transition-all duration-300 relative group"
+                            >
+                                <Quote className="w-6 h-6 text-indigo-50/50 dark:text-zinc-800/50 absolute top-4 right-4 group-hover:text-indigo-100 dark:group-hover:text-indigo-900/30 transition-colors" />
+
+                                <div className="flex gap-1 mb-3 text-amber-400">
+                                    {[...Array(t.rating)].map((_, i) => (
+                                        <Star key={i} className="w-3 h-3 fill-current" />
+                                    ))}
+                                </div>
+
+                                <p className="text-zinc-600 dark:text-zinc-400 text-[13px] sm:text-[15px] italic mb-4 leading-relaxed line-clamp-3">"{t.text}"</p>
+
+                                <div className="flex items-center gap-3 mt-auto">
+                                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-500 to-indigo-700 flex items-center justify-center text-white font-bold text-sm shadow-md">
+                                        {t.name[0]}
+                                    </div>
+                                    <div>
+                                        <h4 className="text-sm font-bold text-black dark:text-white leading-tight">{t.name}</h4>
+                                        <p className="text-[11px] text-indigo-600 dark:text-indigo-400 font-medium">{t.role}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {testimonials.map((t, index) => (
-                        <motion.div
-                            key={index}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
-                            className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 relative"
-                        >
-                            <Quote className="w-10 h-10 text-yellow-100 absolute top-6 right-6" />
+                {/* Row 2: Rightward Marquee */}
+                <div className="relative flex overflow-hidden">
+                    <div
+                        className="flex gap-6 px-4 animate-marquee-right"
+                        style={{
+                            animationDuration: '45s',
+                            animationPlayState: isPaused ? 'paused' : 'running'
+                        }}
+                    >
+                        {/* Use reversed array for variety if desired, or same array */}
+                        {[...doubledTestimonials].reverse().map((t, index) => (
+                            <div
+                                key={`r2-${index}`}
+                                className="w-[300px] sm:w-[380px] flex-shrink-0 bg-white dark:bg-black p-5 sm:p-6 rounded-xl border border-zinc-100 dark:border-zinc-800 hover:border-indigo-600 dark:hover:border-indigo-600 transition-all duration-300 relative group"
+                            >
+                                <Quote className="w-6 h-6 text-indigo-50/50 dark:text-zinc-800/50 absolute top-4 right-4 group-hover:text-indigo-100 dark:group-hover:text-indigo-900/30 transition-colors" />
 
-                            <div className="flex gap-1 mb-6 text-yellow-400">
-                                {[...Array(t.rating)].map((_, i) => (
-                                    <Star key={i} className="w-4 h-4 fill-current" />
-                                ))}
-                            </div>
-
-                            <p className="text-slate-600 text-lg italic mb-6 leading-relaxed">"{t.text}"</p>
-
-                            <div className="flex items-center gap-4">
-                                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center text-white font-bold text-lg">
-                                    {t.name[0]}
+                                <div className="flex gap-1 mb-3 text-amber-400">
+                                    {[...Array(t.rating)].map((_, i) => (
+                                        <Star key={i} className="w-3 h-3 fill-current" />
+                                    ))}
                                 </div>
-                                <div>
-                                    <h4 className="font-bold text-slate-900">{t.name}</h4>
-                                    <p className="text-sm text-yellow-600 font-medium">{t.role}</p>
+
+                                <p className="text-zinc-600 dark:text-zinc-400 text-[13px] sm:text-[15px] italic mb-4 leading-relaxed line-clamp-3">"{t.text}"</p>
+
+                                <div className="flex items-center gap-3 mt-auto">
+                                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-500 to-indigo-700 flex items-center justify-center text-white font-bold text-sm shadow-md">
+                                        {t.name[0]}
+                                    </div>
+                                    <div>
+                                        <h4 className="text-sm font-bold text-black dark:text-white leading-tight">{t.name}</h4>
+                                        <p className="text-[11px] text-indigo-600 dark:text-indigo-400 font-medium">{t.role}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </motion.div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>

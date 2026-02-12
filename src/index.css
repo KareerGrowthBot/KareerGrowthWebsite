@@ -4,10 +4,65 @@
   html {
     scroll-behavior: smooth;
   }
+
+  html.dark body {
+    background-color: black;
+    color: white;
+  }
 }
 
 @layer utilities {
   .text-glow {
-    text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+    text-shadow: 0 0 10px rgba(79, 70, 229, 0.5);
+  }
+
+  @keyframes marquee-left {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes marquee-right {
+    from {
+      transform: translateX(-50%);
+    }
+
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  .animate-marquee-left {
+    animation: marquee-left 12s linear infinite;
+  }
+
+  .animate-marquee-right {
+    animation: marquee-right 12s linear infinite;
+  }
+
+  @media (max-width: 768px) {
+
+    .animate-marquee-left,
+    .animate-marquee-right {
+      animation-duration: 8s;
+    }
+  }
+
+  @keyframes expand-width {
+    from {
+      max-width: 0;
+    }
+
+    to {
+      max-width: 100%;
+    }
+  }
+
+  .animate-expand-width {
+    transition: max-width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
 }
