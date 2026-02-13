@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import {
     Wand2,
@@ -72,7 +72,19 @@ const features = [
 ];
 
 const Features = () => {
-    // Desktop Radial Constants - Compact but Readable
+    const [rotation, setRotation] = useState(0);
+
+    // Infinite rotation loop
+    useEffect(() => {
+        let animationFrameId;
+        const animate = () => {
+            setRotation(prev => (prev + 0.2) % 360);
+            animationFrameId = requestAnimationFrame(animate);
+        };
+        animationFrameId = requestAnimationFrame(animate);
+        return () => cancelAnimationFrame(animationFrameId);
+    }, []);
+
     const radius = 175;
     const hubSize = 180;
 
@@ -149,14 +161,20 @@ const Features = () => {
 
                         {/* Radial Points */}
                         {features.map((item, idx) => {
-                            const angle = (idx * (360 / features.length)) - 90;
+                            const angle = (idx * (360 / features.length)) - 90 + rotation;
                             const radian = (angle * Math.PI) / 180;
 
                             const x = radius * Math.cos(radian);
                             const y = radius * Math.sin(radian);
 
                             const normalizedAngle = ((angle % 360) + 360) % 360;
-                            const isLeftSide = normalizedAngle > 90 && normalizedAngle < 270;
+
+                            // Elliptical radial text positioning for better horizontal clearance
+                            const textRadiusX = 150; // Increased width for sides
+                            const textRadiusY = 90;  // Compact height for top/bottom
+
+                            const tx = textRadiusX * Math.cos(radian);
+                            const ty = textRadiusY * Math.sin(radian);
 
                             return (
                                 <motion.div
@@ -177,19 +195,16 @@ const Features = () => {
                                             {item.icon}
                                         </div>
 
-                                        {/* Text Content - Positioned outside */}
+                                        {/* Text Content - Positioned continuously */}
                                         <div
-                                            className={`absolute w-[220px] pointer-events-none ${Math.abs(normalizedAngle - 270) < 1
-                                                ? "bottom-full mb-6 text-center"
-                                                : Math.abs(normalizedAngle - 90) < 1
-                                                    ? "top-full mt-6 text-center"
-                                                    : isLeftSide
-                                                        ? "right-full mr-5 text-right"
-                                                        : "left-full ml-5 text-left"
-                                                }`}
-                                            style={(Math.abs(normalizedAngle - 270) < 1 || Math.abs(normalizedAngle - 90) < 1) ? { left: '50%', transform: 'translateX(-50%)' } : {}}
+                                            className="absolute w-[200px] pointer-events-none text-center"
+                                            style={{
+                                                left: '50%',
+                                                top: '50%',
+                                                transform: `translate(calc(-50% + ${tx}px), calc(-50% + ${ty}px))`
+                                            }}
                                         >
-                                            <div className="flex flex-col">
+                                            <div className="flex flex-col items-center">
                                                 <h4 className="text-[15px] lg:text-[16px] font-bold text-white leading-tight mb-1">{item.title}</h4>
                                                 <p className="text-[12px] lg:text-[13px] text-zinc-400 leading-relaxed max-w-[180px] mx-auto">{item.description}</p>
                                             </div>

@@ -63,8 +63,26 @@ const Navbar = () => {
         }
     };
 
+    const [scrolled, setScrolled] = useState(false);
+
+    React.useEffect(() => {
+        const handleScroll = () => {
+            const offset = window.scrollY;
+            if (offset > 50) {
+                setScrolled(true);
+            } else {
+                setScrolled(false);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
     return (
-        <nav className="bg-white/80 dark:bg-black/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100 dark:border-zinc-800 transition-colors">
+        <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/80 dark:bg-black/90 backdrop-blur-md border-b border-slate-100 dark:border-zinc-800 shadow-sm' : 'bg-transparent border-transparent'}`}>
             <div className="max-w-7xl mx-auto px-6">
                 <div className="flex items-center justify-between h-20">
                     {/* Logo */}

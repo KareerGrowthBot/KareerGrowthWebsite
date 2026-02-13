@@ -1,24 +1,47 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle2, PlayCircle } from 'lucide-react';
 
 const Hero = () => {
+    const videoRef = useRef(null);
+
+    useEffect(() => {
+        if (videoRef.current) {
+            videoRef.current.currentTime = 15;
+        }
+    }, []);
+
+    const handleTimeUpdate = () => {
+        if (videoRef.current && videoRef.current.currentTime >= 18) {
+            videoRef.current.currentTime = 15;
+            videoRef.current.play();
+        }
+    };
+
     return (
-        <section id="home" className="relative pt-8 pb-4 lg:pt-16 lg:pb-32 overflow-hidden bg-white dark:bg-black transition-colors">
-            {/* Background Decorations */}
-            <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
-                <div className="absolute top-[10%] left-[20%] w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-indigo-200/30 rounded-full blur-[80px] md:blur-[120px] mix-blend-multiply animate-float" />
-                <div className="absolute bottom-[10%] right-[20%] w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-slate-200/40 rounded-full blur-[80px] md:blur-[120px] mix-blend-multiply animate-float" style={{ animationDelay: '2s' }} />
+        <section id="home" className="relative pt-8 pb-16 lg:pt-16 lg:pb-32 overflow-hidden bg-transparent">
+            {/* Video Background - z-0 to sit above parent bg but below content */}
+            <div className="absolute inset-0 w-full h-full overflow-hidden z-0">
+                <video
+                    ref={videoRef}
+                    autoPlay
+                    muted
+                    playsInline
+                    onTimeUpdate={handleTimeUpdate}
+                    className="absolute top-0 left-0 w-full h-full object-cover"
+                >
+                    <source src="/hero.mp4" type="video/mp4" />
+                </video>
             </div>
 
-            <div className="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col items-center text-center">
+            <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 flex flex-col items-center text-center">
 
                 <div className="flex flex-col items-center">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}
-                        className="inline-flex items-center gap-2 px-3 py-1 mb-8 rounded-full bg-indigo-50 dark:bg-indigo-950 border border-indigo-100 dark:border-indigo-800 text-indigo-700 dark:text-indigo-300 text-sm font-semibold tracking-wide uppercase"
+                        className="inline-flex items-center gap-2 px-3 py-1 mb-8 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-sm font-semibold tracking-wide uppercase"
                     >
                         <span className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse" />
                         Next-Gen Career Platform
@@ -28,7 +51,7 @@ const Hero = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.2 }}
-                        className="text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-black dark:text-white leading-[1.15] mb-6 md:mb-8 max-w-5xl px-2"
+                        className="text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.15] mb-6 md:mb-8 max-w-5xl px-2"
                     >
                         An AI-Driven Practice & <br className="hidden md:block" />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-indigo-500 relative">
@@ -42,7 +65,7 @@ const Hero = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.4 }}
-                        className="text-base sm:text-xl text-zinc-600 dark:text-zinc-400 mb-8 sm:mb-10 leading-relaxed max-w-3xl"
+                        className="text-base sm:text-xl text-zinc-300 mb-8 sm:mb-10 leading-relaxed max-w-3xl"
                     >
                         Your complete path to a better career. Create a perfect resume with AI, master your skills through real-time coding practice and proctored mock exams, and access daily job updates to land your dream role.
                     </motion.p>

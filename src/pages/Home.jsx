@@ -4,7 +4,6 @@ import Features from '../components/home/Features';
 import About from '../components/home/About';
 import Services from '../components/home/Services';
 import WhyKareerGrowth from '../components/home/WhyKareerGrowth';
-import WeCoverItAll from '../components/home/WeCoverItAll';
 import HowItWorks from '../components/home/HowItWorks';
 import Testimonials from '../components/home/Testimonials';
 
@@ -16,7 +15,6 @@ const Home = () => {
             <Features />
             <Services />
             <WhyKareerGrowth />
-            <WeCoverItAll />
             <HowItWorks />
             <Testimonials />
         </main>

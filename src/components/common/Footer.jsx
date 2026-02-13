@@ -8,8 +8,8 @@ const Footer = () => {
     return (
         <footer className="bg-white dark:bg-black pt-16 pb-8 border-t border-zinc-200 dark:border-zinc-800 transition-colors relative overflow-hidden">
             <div className="max-w-7xl mx-auto px-6 relative z-10">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-                    <div className="space-y-6">
+                <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-12">
+                    <div className="col-span-2 md:col-span-1 lg:col-span-1 space-y-6">
                         <Link to="/" className="flex items-center gap-2 group">
                             <img src={logo} alt="KareerGrowth" className="h-10 w-auto group-hover:rotate-3 transition-transform" />
                             {/* <span className="text-xl font-bold text-black tracking-tight">
@@ -58,7 +58,7 @@ const Footer = () => {
                         </ul>
                     </div>
 
-                    <div>
+                    <div className="col-span-2 md:col-span-1 lg:col-span-1">
                         <h4 className="font-semibold text-black dark:text-white mb-6">Stay Updated</h4>
                         <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-4">
                             Subscribe to our newsletter for the latest job updates and career tips.

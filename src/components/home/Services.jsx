@@ -14,23 +14,23 @@ const ServiceCard = ({ title, description, icon, bgColor, index }) => {
                 ease: "easeOut",
                 duration: 0.1
             }}
-            className={`group rounded-3xl p-8 border-2 border-black/5 shadow-sm hover:shadow-2xl flex flex-col h-full min-h-[350px] text-black ${bgColor} relative`}
+            className={`group rounded-3xl p-6 sm:p-8 border-2 border-black/5 shadow-sm hover:shadow-2xl flex flex-col h-full min-h-[300px] sm:min-h-[350px] text-black ${bgColor} relative`}
         >
-            <div className="w-16 h-16 rounded-2xl bg-black/10 flex items-center justify-center mb-8 transition-transform duration-300">
-                {React.cloneElement(icon, { size: 32, strokeWidth: 2.5 })}
+            <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-black/10 flex items-center justify-center mb-6 sm:mb-8 transition-transform duration-300">
+                {React.cloneElement(icon, { size: 24, strokeWidth: 2.5, className: "sm:w-8 sm:h-8 w-6 h-6" })}
             </div>
 
-            <h3 className="text-2xl font-black mb-4 tracking-tight leading-tight">
+            <h3 className="text-xl sm:text-2xl font-black mb-3 sm:mb-4 tracking-tight leading-tight">
                 {title}
             </h3>
 
-            <p className="text-black/80 text-sm md:text-base font-bold leading-relaxed mb-8 flex-grow">
+            <p className="text-black/80 text-[13px] sm:text-base font-bold leading-relaxed mb-6 sm:mb-8 flex-grow">
                 {description}
             </p>
 
-            <div className="flex items-center font-black text-sm group/btn cursor-pointer mt-auto">
+            <div className="flex items-center font-black text-xs sm:text-sm group/btn cursor-pointer mt-auto">
                 <span className="tracking-widest">EXPLORE MORE</span>
-                <ArrowRight className="w-5 h-5 ml-2 transition-transform" />
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 transition-transform" />
             </div>
         </motion.div>
     );
@@ -94,14 +94,14 @@ const Services = () => {
     const doubledFeatures = [...features, ...features];
 
     return (
-        <section id="services" className="py-16 lg:py-24 bg-white dark:bg-black relative overflow-hidden transition-colors">
+        <section id="services" className="pt-16 pb-0 lg:pt-24 lg:pb-32 bg-white dark:bg-black relative overflow-hidden transition-colors">
             {/* Background Decorative Elements */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none -z-10">
                 <div className="absolute -top-[10%] -left-[5%] w-[30%] h-[30%] bg-indigo-100/30 rounded-full blur-[80px]" />
                 <div className="absolute top-[60%] -right-[5%] w-[25%] h-[25%] bg-slate-200/30 rounded-full blur-[80px]" />
             </div>
 
-            <div className="max-w-7xl mx-auto px-6 mb-8">
+            <div className="max-w-7xl mx-auto px-6 mb-4 sm:mb-8">
                 {/* Header */}
                 <div className="text-center">
                     <motion.div
@@ -120,9 +120,7 @@ const Services = () => {
 
             {/* Marquee Container */}
             <div
-                className="relative flex overflow-hidden cursor-pointer pt-14 pb-16"
-                onMouseEnter={() => setIsPaused(true)}
-                onMouseLeave={() => setIsPaused(false)}
+                className="relative flex overflow-hidden cursor-pointer pt-4 pb-8 sm:pt-14 sm:pb-16"
             >
                 <div
                     className="flex gap-8 px-4 py-4 animate-marquee-left"
@@ -132,7 +130,12 @@ const Services = () => {
                     }}
                 >
                     {doubledFeatures.map((feature, index) => (
-                        <div key={index} className="w-[320px] flex-shrink-0">
+                        <div
+                            key={index}
+                            className="w-[260px] sm:w-[320px] flex-shrink-0"
+                            onMouseEnter={() => setIsPaused(true)}
+                            onMouseLeave={() => setIsPaused(false)}
+                        >
                             <ServiceCard
                                 index={index}
                                 {...feature}
