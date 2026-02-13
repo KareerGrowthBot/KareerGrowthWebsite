@@ -7,7 +7,7 @@ import { ChevronLeft, ChevronRight, Quote, Trophy, TrendingUp, Users, Star } fro
 const highlights = [
     { name: "AI Interviews", icon: <Trophy />, image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=300&h=300&fit=crop" },
     { name: "Resume Revamp", icon: <TrendingUp />, image: "https://images.unsplash.com/photo-1586281380117-5a60ae2050cc?w=300&h=300&fit=crop" },
-    { name: "Salary Hike", icon: <TrendingUp />, image: "https://images.unsplash.com/photo-1454165833267-02300a200788?w=300&h=300&fit=crop" },
+    { name: "Salary Hike", icon: <TrendingUp />, image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=300&h=300&fit=crop" },
     { name: "Global Offers", icon: <Users />, image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=300&h=300&fit=crop" },
     { name: "System Design", icon: <Trophy />, image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=300&h=300&fit=crop" },
     { name: "Tech Mentorship", icon: <Users />, image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=300&h=300&fit=crop" },

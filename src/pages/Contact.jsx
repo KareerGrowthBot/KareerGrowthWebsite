@@ -1,140 +1,103 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { MessageCircle, MapPin, Phone, Facebook, Twitter, Linkedin, Youtube, Globe } from 'lucide-react';
 
 const Contact = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
+
     return (
-        <div className="pt-32 pb-20 bg-slate-50 min-h-screen">
+        <div className="pt-6 pb-8 bg-black min-h-screen text-white">
             <div className="max-w-7xl mx-auto px-6">
+                <div className="flex flex-col lg:flex-row gap-8 lg:gap-24 items-center">
 
-                {/* Header */}
-                <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-16 px-4">
-                    <span className="text-sm font-semibold text-indigo-600 tracking-wider uppercase mb-2 block">Get in Touch</span>
-                    <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-6">Let's Start a Conversation</h1>
-                    <p className="text-sm sm:text-base lg:text-lg text-slate-600">Have questions about our AI tools or mentorship programs? We're here to help you accelerate your career.</p>
-                </div>
+                    {/* Left Side - Info */}
+                    <div className="lg:w-1/3 space-y-4">
+                        <div>
+                            <h2 className="text-4xl md:text-7xl font-black mb-1">Let's get in touch</h2>
+                            <p className="text-xl md:text-2xl font-bold text-indigo-600 mb-4">
+                                Don't be afraid to say hello with us!
+                            </p>
+                            <p className="text-sm md:text-base text-zinc-500 leading-relaxed mb-6 font-normal">
+                                We're here to help you navigate your career journey with personalized guidance and expert industry insights. Reach out anytime with your questions or to explore how we can support your growth.
+                            </p>
+                            <div className="pt-4 border-t border-zinc-900">
+                                <p className="text-[10px] md:text-sm font-bold text-zinc-500 uppercase tracking-widest mb-2">Email Address</p>
+                                <a href="mailto:hello@kareergrowth.com" className="text-lg md:text-2xl font-bold text-white hover:text-[#B6FF60] transition-colors">
+                                    hello@kareergrowth.com
+                                </a>
+                            </div>
+                        </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-10">
+                        {/* Social Icons */}
+                        <div className="flex gap-6 pt-4">
+                            <Facebook className="w-5 h-5 text-zinc-500 hover:text-white cursor-pointer transition-colors" />
+                            <Twitter className="w-5 h-5 text-zinc-500 hover:text-white cursor-pointer transition-colors" />
+                            <Linkedin className="w-5 h-5 text-zinc-500 hover:text-white cursor-pointer transition-colors" />
+                            <Youtube className="w-5 h-5 text-zinc-500 hover:text-white cursor-pointer transition-colors" />
+                            <Globe className="w-5 h-5 text-zinc-500 hover:text-white cursor-pointer transition-colors" />
+                        </div>
+                    </div>
 
-                    {/* Contact Info Card */}
+                    {/* Right Side - Neon Green Form */}
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6 }}
-                        className="bg-slate-900 rounded-3xl p-10 text-white shadow-2xl overflow-hidden relative"
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        className="lg:w-2/3 w-full bg-[#B6FF60] rounded-[2.5rem] p-6 md:p-10 text-black"
                     >
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-                        <div className="absolute bottom-0 left-0 w-48 h-48 bg-indigo-400/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+                        <div className="space-y-4 pb-4">
+                            <h1 className="text-3xl md:text-5xl font-black tracking-tight leading-[1.1]">
+                                Let's accelerate your <br />
+                                career growth.
+                            </h1>
 
-                        <div className="relative z-10 space-y-8">
-                            <div>
-                                <h3 className="text-2xl font-bold mb-2">Contact Information</h3>
-                                <p className="text-slate-300">Fill out the form or reach us directly.</p>
-                            </div>
-
-                            <div className="space-y-6">
-                                <div className="flex items-start gap-4">
-                                    <div className="p-2 bg-slate-700/50 rounded-lg">
-                                        <Mail className="w-6 h-6" />
+                            <form className="space-y-6">
+                                {/* Underline Inputs */}
+                                <div className="space-y-6">
+                                    <div className="group relative">
+                                        <input
+                                            type="text"
+                                            placeholder="Your name"
+                                            className="w-full bg-transparent border-b-2 border-black/10 focus:border-black outline-none py-2 text-lg md:text-xl font-bold placeholder:text-black/30 transition-all"
+                                        />
                                     </div>
-                                    <div>
-                                        <p className="text-sm text-slate-400 font-medium uppercase tracking-wider mb-1">Email</p>
-                                        <a href="mailto:hello@kareergrowth.com" className="text-base sm:text-lg font-semibold hover:text-indigo-300 transition-colors">hello@kareergrowth.com</a>
+
+                                    <div className="group relative">
+                                        <input
+                                            type="email"
+                                            placeholder="Your email"
+                                            className="w-full bg-transparent border-b-2 border-black/10 focus:border-black outline-none py-2 text-lg md:text-xl font-bold placeholder:text-black/30 transition-all"
+                                        />
+                                    </div>
+
+                                    <div className="group relative">
+                                        <input
+                                            type="tel"
+                                            placeholder="Phone number"
+                                            className="w-full bg-transparent border-b-2 border-black/10 focus:border-black outline-none py-2 text-lg md:text-xl font-bold placeholder:text-black/30 transition-all"
+                                        />
+                                    </div>
+
+                                    <div className="group relative">
+                                        <input
+                                            type="text"
+                                            placeholder="Tell us a little about the project..."
+                                            className="w-full bg-transparent border-b-2 border-black/10 focus:border-black outline-none py-2 text-lg md:text-xl font-bold placeholder:text-black/30 transition-all"
+                                        />
                                     </div>
                                 </div>
 
-                                <div className="flex items-start gap-4">
-                                    <div className="p-2 bg-slate-700/50 rounded-lg">
-                                        <Phone className="w-6 h-6" />
-                                    </div>
-                                    <div>
-                                        <p className="text-sm text-slate-400 font-medium uppercase tracking-wider mb-1">Phone</p>
-                                        <a href="tel:+918001234567" className="text-base sm:text-lg font-semibold hover:text-indigo-300 transition-colors">+91 (800) 123-4567</a>
-                                    </div>
-                                </div>
 
-                                <div className="flex items-start gap-4">
-                                    <div className="p-2 bg-slate-700/50 rounded-lg">
-                                        <MapPin className="w-6 h-6" />
-                                    </div>
-                                    <div>
-                                        <p className="text-sm text-slate-400 font-medium uppercase tracking-wider mb-1">Office</p>
-                                        <p className="text-base sm:text-lg font-semibold">Bangalore, Karnataka, India</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="pt-8 mt-auto">
-                                <p className="text-sm text-slate-400 mb-4">Connect with us</p>
-                                <div className="flex gap-4">
-                                    {[1, 2, 3, 4].map((i) => (
-                                        <div key={i} className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center cursor-pointer transition-colors">
-                                            {/* Social Icons Placeholder */}
-                                            <div className="w-4 h-4 bg-white rounded-sm opacity-50"></div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
+                                {/* Submit Button */}
+                                <button className="w-full py-5 md:py-8 bg-[#0D0D12] text-white text-lg md:text-xl font-black rounded-2xl md:rounded-3xl hover:bg-black transition-all active:scale-[0.98] mt-4">
+                                    Let's get started!
+                                </button>
+                            </form>
                         </div>
                     </motion.div>
 
-                    {/* Contact Form */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
-                        className="lg:col-span-2 bg-white rounded-3xl p-10 shadow-xl border border-slate-100"
-                    >
-                        <form className="space-y-8">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                <div className="space-y-2">
-                                    <label htmlFor="firstName" className="text-sm font-semibold text-slate-700">First Name</label>
-                                    <input type="text" id="firstName" placeholder="John" className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition-all" />
-                                </div>
-                                <div className="space-y-2">
-                                    <label htmlFor="lastName" className="text-sm font-semibold text-slate-700">Last Name</label>
-                                    <input type="text" id="lastName" placeholder="Doe" className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition-all" />
-                                </div>
-                            </div>
-
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                <div className="space-y-2">
-                                    <label htmlFor="email" className="text-sm font-semibold text-slate-700">Email Address</label>
-                                    <input type="email" id="email" placeholder="john@example.com" className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition-all" />
-                                </div>
-                                <div className="space-y-2">
-                                    <label htmlFor="phone" className="text-sm font-semibold text-slate-700">Phone Number</label>
-                                    <input type="tel" id="phone" placeholder="+1 (555) 000-0000" className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition-all" />
-                                </div>
-                            </div>
-
-                            <div className="space-y-2">
-                                <label className="text-sm font-semibold text-slate-700">Topic of Interest</label>
-                                <div className="flex flex-wrap gap-3">
-                                    {['Mock Interviews', 'Resume Review', 'Mentorship', 'Partnership', 'Other'].map((topic) => (
-                                        <label key={topic} className="cursor-pointer">
-                                            <input type="radio" name="topic" className="peer sr-only" />
-                                            <span className="inline-block px-4 py-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-600 text-sm font-medium peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600 hover:bg-slate-100 transition-all">
-                                                {topic}
-                                            </span>
-                                        </label>
-                                    ))}
-                                </div>
-                            </div>
-
-                            <div className="space-y-2">
-                                <label htmlFor="message" className="text-sm font-semibold text-slate-700">Message</label>
-                                <textarea id="message" rows="4" placeholder="How can we help you?" className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition-all resize-none"></textarea>
-                            </div>
-
-                            <div className="flex justify-end">
-                                <button type="submit" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-indigo-600 text-white rounded-xl font-bold hover:bg-indigo-700 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 active:scale-95 group">
-                                    <span>Send Message</span>
-                                    <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                                </button>
-                            </div>
-                        </form>
-                    </motion.div>
                 </div>
             </div>
         </div>

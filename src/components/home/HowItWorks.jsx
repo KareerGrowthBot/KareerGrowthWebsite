@@ -5,23 +5,23 @@ import { UserPlus, Code2, Presentation, Briefcase, ArrowRight } from 'lucide-rea
 const steps = [
     {
         icon: <UserPlus className="w-8 h-8" />,
-        title: "Sign Up & Profile",
+        title: "Signup & Create Profile",
         description: "Create your professional identity. Verify email, set goals, and build your base profile."
     },
     {
         icon: <Code2 className="w-8 h-8" />,
-        title: "Start Practicing",
-        description: "Access AI-driven coding challenges, aptitude tests, and communication drills."
+        title: "Practice Session",
+        description: "Access customized drills for General, Position, Coding, and Aptitude tests."
     },
     {
         icon: <Presentation className="w-8 h-8" />,
-        title: "Take Mock Tests",
+        title: "Attend Mock Test",
         description: "Simulate real interviews with our advanced AI. Get instant, detailed feedback."
     },
     {
         icon: <Briefcase className="w-8 h-8" />,
-        title: "Apply to Jobs",
-        description: "Use your verified score to apply directly to top tech companies."
+        title: "Apply Daily New Jobs",
+        description: "Use your verified performance to apply for daily updated job opportunities."
     }
 ];
 

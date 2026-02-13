@@ -28,7 +28,7 @@ const Navbar = () => {
             name: 'Contact',
             path: '/contact',
             subLinks: [
-                { name: 'Blog', path: '#blog' }
+                { name: 'Blog', path: '/blog' }
             ]
         },
     ];

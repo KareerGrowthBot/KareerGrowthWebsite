@@ -2,30 +2,35 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { BookOpen, FileText, Users, TrendingUp, Code2, Bell, MessageSquare, Monitor, ArrowRight } from 'lucide-react';
 
-const ServiceCard = ({ title, description, icon, index }) => {
+const ServiceCard = ({ title, description, icon, bgColor, index }) => {
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            whileHover={{ y: -45, zIndex: 50 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="group bg-white dark:bg-black rounded-2xl p-6 border border-zinc-200 dark:border-zinc-800 shadow-sm hover:shadow-xl hover:border-indigo-600 dark:hover:border-indigo-600 transition-all duration-300 flex flex-col h-full"
+            transition={{
+                type: "tween",
+                ease: "easeOut",
+                duration: 0.1
+            }}
+            className={`group rounded-3xl p-8 border-2 border-black/5 shadow-sm hover:shadow-2xl flex flex-col h-full min-h-[350px] text-black ${bgColor} relative`}
         >
-            <div className="w-12 h-12 rounded-xl bg-indigo-50 dark:bg-indigo-950 flex items-center justify-center text-indigo-600 dark:text-indigo-400 mb-5 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300">
-                {React.cloneElement(icon, { size: 24 })}
+            <div className="w-16 h-16 rounded-2xl bg-black/10 flex items-center justify-center mb-8 transition-transform duration-300">
+                {React.cloneElement(icon, { size: 32, strokeWidth: 2.5 })}
             </div>
 
-            <h3 className="text-lg font-bold text-black dark:text-white mb-3 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+            <h3 className="text-2xl font-black mb-4 tracking-tight leading-tight">
                 {title}
             </h3>
 
-            <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed mb-6 flex-grow">
+            <p className="text-black/80 text-sm md:text-base font-bold leading-relaxed mb-8 flex-grow">
                 {description}
             </p>
 
-            <div className="flex items-center text-indigo-600 dark:text-indigo-400 font-bold text-sm group/btn cursor-pointer">
-                <span>Learn More</span>
-                <ArrowRight className="w-4 h-4 ml-1 group-hover/btn:translate-x-1 transition-transform" />
+            <div className="flex items-center font-black text-sm group/btn cursor-pointer mt-auto">
+                <span className="tracking-widest">EXPLORE MORE</span>
+                <ArrowRight className="w-5 h-5 ml-2 transition-transform" />
             </div>
         </motion.div>
     );
@@ -37,43 +42,51 @@ const Services = () => {
     const features = [
         {
             title: "Comprehensive Practice",
-            description: "Master essential skills with unlimited practice across multiple domains.",
-            icon: <BookOpen />
+            description: "Master technical skills across multiple domains. Access 5000+ practice questions in DSA, System Design, and Core Engineering subjects to sharpen your expertise and confidence.",
+            icon: <BookOpen />,
+            bgColor: "bg-[#B6FF60]" // Neon Green
         },
         {
             title: "Resume Builder",
-            description: "Build professional, ATS-friendly resumes with instant scores and tips.",
-            icon: <FileText />
+            description: "Create high-impact, ATS-optimized resumes in minutes. Get real-time feedback on your content, formatting, and keyword density to ensure you stand out from the crowd.",
+            icon: <FileText />,
+            bgColor: "bg-[#FFD700]" // Yellow
         },
         {
-            title: "Mock Tests",
-            description: "Realistic simulations based on your performance history.",
-            icon: <Users />
+            title: "Mock Test Simulations",
+            description: "Experience true-to-life interview scenarios. Our AI analyzes your technical depth, body language, and tone to provide actionable insights for your continuous improvement.",
+            icon: <Users />,
+            bgColor: "bg-[#FF69B4]" // Pink
         },
         {
             title: "Trending Questions",
-            description: "Access the latest and most asked interview questions in one place.",
-            icon: <TrendingUp />
+            description: "Stay ahead of the curve with real-time interview insights. We aggregate recent questions from top tech giants like Google, Amazon, and Meta to help you prepare effectively.",
+            icon: <TrendingUp />,
+            bgColor: "bg-[#87CEEB]" // Sky Blue
         },
         {
-            title: "Coding Problems",
-            description: "Custom coding challenges with real-time execution and test cases.",
-            icon: <Code2 />
+            title: "Coding Challenges",
+            description: "Solve real-world coding problems in our integrated environment. Progress through curated challenges from easy to hard, covering all major data structures and algorithms.",
+            icon: <Code2 />,
+            bgColor: "bg-[#FF8C00]" // Orange
         },
         {
-            title: "Daily Job Updates",
-            description: "Daily curated job openings matched to your profile.",
-            icon: <Bell />
+            title: "Daily Job Alerts",
+            description: "Never miss an opportunity with our smart job updates. We scan 100+ job boards daily to bring you personalized listings that perfectly match your skills and career aspirations.",
+            icon: <Bell />,
+            bgColor: "bg-[#B6FF60]" // Neon Green
         },
         {
-            title: "Job-Specific Prep",
-            description: "Prepare with questions tailored to specific roles and companies.",
-            icon: <MessageSquare />
+            title: "Company-Specific Prep",
+            description: "Get ready for your dream role with targeted preparation. Access company-specific guides and role-based question banks designed to give you a definitive competitive edge.",
+            icon: <MessageSquare />,
+            bgColor: "bg-[#FFD700]" // Yellow
         },
         {
-            title: "Code Editor",
-            description: "Pro-level editor with syntax highlighting and debug tools.",
-            icon: <Monitor />
+            title: "Advanced Code Editor",
+            description: "Code like a pro with our powerful web-based IDE. Featuring multi-language support, syntax highlighting, and an integrated debugger for a seamless development experience.",
+            icon: <Monitor />,
+            bgColor: "bg-[#FF69B4]" // Pink
         }
     ];
 
@@ -88,7 +101,7 @@ const Services = () => {
                 <div className="absolute top-[60%] -right-[5%] w-[25%] h-[25%] bg-slate-200/30 rounded-full blur-[80px]" />
             </div>
 
-            <div className="max-w-7xl mx-auto px-6 mb-16">
+            <div className="max-w-7xl mx-auto px-6 mb-8">
                 {/* Header */}
                 <div className="text-center">
                     <motion.div
@@ -97,32 +110,29 @@ const Services = () => {
                         viewport={{ once: true }}
                     >
                         <span className="text-sm font-bold text-indigo-600 dark:text-indigo-400 tracking-[0.2em] uppercase block mb-3">Our Expertise</span>
-                        <h2 className="text-3xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-4 tracking-tight">
+                        <h2 className="text-3xl lg:text-5xl font-black text-slate-900 dark:text-white mb-4 tracking-tight">
                             Tailored <span className="text-indigo-600 dark:text-indigo-400">Services</span>
                         </h2>
                         <div className="w-20 h-1.5 bg-indigo-600 mx-auto rounded-full mb-6"></div>
-                        <p className="text-zinc-600 dark:text-zinc-400 text-sm sm:text-base max-w-2xl mx-auto font-medium">
-                            Comprehensive tools and guidance designed to accelerate your career growth in the tech industry.
-                        </p>
                     </motion.div>
                 </div>
             </div>
 
             {/* Marquee Container */}
             <div
-                className="relative flex overflow-hidden cursor-pointer"
+                className="relative flex overflow-hidden cursor-pointer pt-14 pb-16"
                 onMouseEnter={() => setIsPaused(true)}
                 onMouseLeave={() => setIsPaused(false)}
             >
                 <div
-                    className="flex gap-6 px-4 animate-marquee-left"
+                    className="flex gap-8 px-4 py-4 animate-marquee-left"
                     style={{
-                        animationDuration: '35s',
+                        animationDuration: '30s',
                         animationPlayState: isPaused ? 'paused' : 'running'
                     }}
                 >
                     {doubledFeatures.map((feature, index) => (
-                        <div key={index} className="w-[300px] flex-shrink-0">
+                        <div key={index} className="w-[320px] flex-shrink-0">
                             <ServiceCard
                                 index={index}
                                 {...feature}
