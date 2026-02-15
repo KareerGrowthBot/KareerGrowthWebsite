@@ -66,3 +66,59 @@
     transition: max-width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
 }
+
+.voice-chat-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.voice-chat-animation-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.click-to-talk-image {
+  max-width: 75px;
+  cursor: pointer;
+}
+
+.deepgram-orb-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.deepgram-orb-button img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+@keyframes rotateCounterClockwise {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .click-to-talk-image {
+    max-width: 50px;
+  }
+
+  .deepgram-orb-button img {
+    width: 40px;
+    height: 40px;
+  }
+}
